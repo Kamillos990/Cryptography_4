@@ -1,16 +1,23 @@
-# This is a sample Python script.
+# 1. Zapoznaj się z biblioteką Cryptography powtarzając przykłady z wykładu (szyfrowanie symetryczne, generowanie klucza publicznego i prywatnego, serializacja kluczy, itp.)
+# 2. Stwórz prosty serwis z API za pomocą https://fastapi.tiangolo.com/ z endpointami:
+# a) symetric:
+# GET symetric/key -> zwraca losowo wygenerowany klucz symetryczny w postaci HEXów (może być JSON)
+# POST symetric/key -> ustawia na serwerze klucz symetryczny podany w postaci HEX w request
+# POST symetric/encode -> wysyłamy wiadomość, w wyniku dostajemy ją zaszyfrowaną
+# POST symetric/decode -> wysyłamy wiadomość, w wyniku dostajemy ją odszyfrowaną
+# b) asymetric:
+# GET asymetric/key -> zwraca nowy klucz publiczny i prywatny w postaci HEX (w JSON jako dict) i ustawia go na serwerze
+# GET asymetric/key/ssh -> zwraca klucz publiczny i prywatny w postaci HEX zapisany w formacie OpenSSH
+# POST asymetric/key -> ustawia na serwerze klucz publiczny i prywatny w postaci HEX (w JSON jako dict)
+# POST asymetric/verify -> korzystając z aktualnie ustawionego klucza prywatnego, podpisuje wiadomość i zwracaą ją podpisaną
+# POST asymetric/sign -> korzystając z aktualnie ustawionego klucza publicznego, weryfikuję czy wiadomość była zaszyfrowana przy jego użyciu
+# POST asymetric/encode -> wysyłamy wiadomość, w wyniku dostajemy ją zaszyfrowaną
+# POST asymetric/decode -> wysyłamy wiadomość, w wyniku dostajemy ją odszyfrowaną
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from Endpoints import app
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    app
